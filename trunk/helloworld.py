@@ -13,7 +13,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
 def scramble_reverse(chars):
-  # eeverse the imported chars
+  # reverse the imported chars
   ochars = ''
   beyond = len(chars)
   for ix in range(beyond):
