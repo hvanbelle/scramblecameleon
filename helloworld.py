@@ -13,7 +13,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
 def scramble_reverse(chars):
-  #''Reverse the imported chars''
+  # eeverse the imported chars
   ochars = ''
   beyond = len(chars)
   for ix in range(beyond):
@@ -21,25 +21,25 @@ def scramble_reverse(chars):
   return ochars
 
 def scramble_md5(chars):
-  #''Excecute a md5 conversion''
+  # excecute a md5 conversion
   hash = md5.new()
   hash.update(chars)
   return base64.encodestring(repr(hash.digest()))
 
 def getsalt(chars = string.letters + string.digits):
-    # generate a random 2-character 'salt'
-    return random.choice(chars) + random.choice(chars)
+  # generate a random 2-character 'salt'
+  return random.choice(chars) + random.choice(chars)
 
 def scramble_crypt(chars):
-  #''Excecute a crypt conversion''
+  # excecute a crypt conversion
   return crypt.crypt(chars, getsalt())
 
 def scramble_crypt_ab(chars):
-  #''Excecute a crypt conversion with fixed salt''
+  # excecute a crypt conversion with fixed salt
   return crypt.crypt(chars, "ab") # same salt so same crypt for same string
 
 def scramble_rot13(chars):
-  #''Excecute a rot13 conversion''
+  # excecute a rot13 conversion
   rot13_result = ""
   for x in range(len(chars)):
     byte = ord(chars[x])
