@@ -51,6 +51,10 @@ def scramble_rot13(chars):
     rot13_result = rot13_result + chr(byte)
   return rot13_result
 
+
+
+
+
 class Greeting(db.Model):
   author = db.UserProperty()
   content = db.StringProperty(multiline=True)
@@ -60,7 +64,7 @@ class Greeting(db.Model):
 class MainPage(webapp.RequestHandler):
   def get(self):
     greetings_query = Greeting.all().order('-date') # Order decending
-    greetings = greetings_query.fetch(3) # Fetch only the last 5 entries
+    greetings = greetings_query.fetch(1) # Fetch only the last x last entries
 
     if users.get_current_user():
       url = users.create_logout_url(self.request.uri)
@@ -79,25 +83,14 @@ class MainPage(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
 
-class Guestbook(webapp.RequestHandler):
+class Scramble(webapp.RequestHandler):
   def post(self):
     greeting = Greeting()
 
     if users.get_current_user():
       greeting.author = users.get_current_user()
 
-    greeting.content = self.request.get('content')
-    greeting.put()
-    self.redirect('/')
-
-class Guestbook2(webapp.RequestHandler):
-  def post(self):
-    greeting = Greeting()
-
-    if users.get_current_user():
-      greeting.author = users.get_current_user()
-
-    scrambled_content = scramble_rot13(self.request.get('content2'))  
+    scrambled_content = scramble_reverse(self.request.get('text2scramble'))  
 
     greeting.content = scrambled_content
     greeting.put()
@@ -105,8 +98,7 @@ class Guestbook2(webapp.RequestHandler):
 
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
-                                      ('/sign', Guestbook),
-                                      ('/sign2', Guestbook2)],
+                                      ('/scramble', Scramble)],
                                      debug=True)
 
 def main():
