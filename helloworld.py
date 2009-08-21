@@ -60,7 +60,7 @@ class Greeting(db.Model):
 class MainPage(webapp.RequestHandler):
   def get(self):
     greetings_query = Greeting.all().order('-date') # Order decending
-    greetings = greetings_query.fetch(5) # Fetch only the last 5 entries
+    greetings = greetings_query.fetch(3) # Fetch only the last 5 entries
 
     if users.get_current_user():
       url = users.create_logout_url(self.request.uri)

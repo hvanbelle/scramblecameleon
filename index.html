@@ -5,63 +5,70 @@
   </head>
   <body>
 
-<ul id="sddm">
-    <li><a href="#" 
-        onmouseover="mopen('m1')" 
-        onmouseout="mclosetime()">Home</a>
-        <div id="m1" 
-            onmouseover="mcancelclosetime()" 
-            onmouseout="mclosetime()">
-        <a href="http://www.vanbellenet.be/">hvanbelle website</a>
-        <a href="http://www.google.be">Google website</a>
-        <a href="#">JavaScript DropDown</a>
-        <a href="#">Cascading Menu</a>
-        <a href="#">CSS Horizontal Menu</a>
-        </div>
-    </li>
-    <li><a href="#" 
-        onmouseover="mopen('m2')" 
-        onmouseout="mclosetime()">Download</a>
-        <div id="m2" 
-            onmouseover="mcancelclosetime()" 
-            onmouseout="mclosetime()">
-        <a href="#">ASP Dropdown</a>
-        <a href="#">Pulldown menu</a>
-        <a href="#">AJAX Drop Submenu</a>
-        <a href="#">DIV Cascading Menu</a>
-        </div>
-    </li>
-    <li><a href="#">Order</a></li>
-    <li><a href="#">Help</a></li>
-    <li><a href="#">Contact</a></li>
-</ul>
-<div style="clear:both"></div>
-
-
     <h1>A Simple Google Apps Engine Applications here ......</h1>
+    
+    <a href="http://www.vanbellenet.be"><img alt="VanbelleNet" src="pictures/me_python2.png" title="VanbelleNet"></a>
+    <a href="http://www.vanbellenet.be"><img alt="VanbelleNet" src="pictures/me_python.png" title="VanbelleNet"></a>
+
+    <p></p>
+
+    <ul id="sddm">
+      <li><a href="#" 
+             onmouseover="mopen('m1')" 
+             onmouseout="mclosetime()">Home</a>
+        <div id="m1" 
+             onmouseover="mcancelclosetime()" 
+             onmouseout="mclosetime()">
+          <a href="http://www.vanbellenet.be/">hvanbelle website</a>
+          <a href="http://www.google.be">Google website</a>
+          <a href="#">JavaScript DropDown</a>
+          <a href="#">Cascading Menu</a>
+          <a href="#">CSS Horizontal Menu</a>
+        </div>
+      </li>
+      <li><a href="#" 
+             onmouseover="mopen('m2')" 
+             onmouseout="mclosetime()">Download</a>
+        <div id="m2" 
+             onmouseover="mcancelclosetime()" 
+             onmouseout="mclosetime()">
+          <a href="#">ASP Dropdown</a>
+          <a href="#">Pulldown menu</a>
+          <a href="#">AJAX Drop Submenu</a>
+          <a href="#">DIV Cascading Menu</a>
+        </div>
+      </li>
+      <li><a href="#">Order</a></li>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div style="clear:both"></div>
+    
+    <p></p>
+
     <form action="/sign" method="post">
       <div><textarea name="content" rows="3" cols="60"></textarea></div>
       <div><input type="submit" value="Submit"></div>
     </form>
-
+    
     <form action="/sign2" method="post">
       <div><textarea name="content2" rows="3" cols="60"></textarea></div>
       <div><input type="submit" value="Scramble"></div>
     </form>
-
+    
     {% for greeting in greetings %}
-      {% if greeting.author %}
-        <b>{{ greeting.date }}</b> - 
-        <b>{{ greeting.author.nickname }}</b> wrote:
-      {% else %}
-	<b>{{ greeting.date }}</b> -
-        <b>An anonymous person</b> wrote:
-      {% endif %}
-      <blockquote>{{ greeting.content|escape }}</blockquote>
+    {% if greeting.author %}
+    <b>{{ greeting.date }}</b> - 
+    <b>{{ greeting.author.nickname }}</b> wrote:
+    {% else %}
+    <b>{{ greeting.date }}</b> -
+    <b>An anonymous person</b> wrote:
+    {% endif %}
+    <blockquote>{{ greeting.content|escape }}</blockquote>
     {% endfor %}
-
-
+    
+    
     <a href="{{ url }}">{{ url_linktext }}</a>
-
+    
   </body>
 </html>
