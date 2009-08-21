@@ -56,10 +56,10 @@
     {% for greeting in greetings %}
     {% if greeting.author %}
     <b>{{ greeting.date }}</b> - 
-    <b>{{ greeting.author.nickname }}</b> wrote:
+    <b>{{ greeting.author.nickname }}</b> ==>> 
     {% else %}
     <b>{{ greeting.date }}</b> -
-    <b>An anonymous person</b> wrote:
+    <b>An anonymous person</b> ==>>
     {% endif %}
     <blockquote>{{ greeting.content|escape }}</blockquote>
     {% endfor %}
