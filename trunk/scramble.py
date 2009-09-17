@@ -12,6 +12,11 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
 
+def scramble_passgen(len):
+  '''password generator'''
+  chars2use = ''.join(['abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ','1234567890','_+/:;.,?']) # plus whatever additional characters you want
+  return ''.join([random.choice(chars2use) for i in range(len)])
+
 def scramble_reverse(chars):
   '''reverse the imported chars'''
   ochars = ''
@@ -90,7 +95,8 @@ class Scramble(webapp.RequestHandler):
     if users.get_current_user():
       greeting.author = users.get_current_user()
 
-    scrambled_content = scramble_md5(self.request.get('text2scramble'))  
+#    scrambled_content = scramble_passgen(self.request.get('text2scramble'))  
+    scrambled_content = scramble_passgen(9)  
 
     greeting.content = scrambled_content
     greeting.put()
