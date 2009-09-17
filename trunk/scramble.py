@@ -90,7 +90,7 @@ class Scramble(webapp.RequestHandler):
     if users.get_current_user():
       greeting.author = users.get_current_user()
 
-    scrambled_content = scramble_reverse(self.request.get('text2scramble'))  
+    scrambled_content = scramble_md5(self.request.get('text2scramble'))  
 
     greeting.content = scrambled_content
     greeting.put()
