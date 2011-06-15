@@ -18,8 +18,13 @@
     <p></p>
 
     <form action="/scramble" method="post">
-      <div><textarea name="text2scramble" rows="10" cols="60"></textarea></div>
       <div><input type="submit" value="Scramble"></div>
+      <div><textarea name="text2scramble" rows="10" cols="60"></textarea></div>
+    </form>
+    
+    <form action="/scramble2" method="post">
+      <div><input type="submit" value="Scramble2"></div>
+      <div><textarea name="text2scramble" rows="10" cols="60"></textarea></div>
     </form>
     
     {% for greeting in greetings %}

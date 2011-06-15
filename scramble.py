@@ -102,9 +102,23 @@ class Scramble(webapp.RequestHandler):
     greeting.put()
     self.redirect('/')
 
+class Scramble2(webapp.RequestHandler):
+  def post(self):
+    greeting = Greeting()
+
+    if users.get_current_user():
+      greeting.author = users.get_current_user()
+
+    scrambled_content = scramble_rot13(self.request.get('text2scramble'))  
+
+    greeting.content = scrambled_content
+    greeting.put()
+    self.redirect('/')
+
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
-                                      ('/scramble', Scramble)],
+                                      ('/scramble', Scramble),
+                                      ('/scramble2', Scramble2)],
                                      debug=True)
 
 def main():
